@@ -260,6 +260,9 @@ Log = (state, config, obj) ->
       }
 
     snapshot: (name, options = {}) ->
+      ## TODO: inspect why this is failing in IE and why we're not try/catch
+
+      return @
       ## bail early and dont snapshot
       ## if we're in headless mode
       ## TODO: fix this
@@ -426,6 +429,7 @@ create = (Cypress, cy, state, config) ->
   delay ?= setDelay(config("logAttrsDelay"))
 
   trigger = (log, event) ->
+    return
     ## bail if we never fired our initial log event
     return if not log._hasInitiallyLogged
 
@@ -458,6 +462,7 @@ create = (Cypress, cy, state, config) ->
 
     log = Log(state, config, obj)
 
+    
     ## add event emitter interface
     $Events.extend(log)
 
@@ -467,6 +472,9 @@ create = (Cypress, cy, state, config) ->
     ## only fire the log:state:changed event
     ## as fast as every 4ms
     log.fireChangeEvent = _.debounce(triggerStateChanged, 4)
+
+    return log
+
 
     log.set(obj)
 

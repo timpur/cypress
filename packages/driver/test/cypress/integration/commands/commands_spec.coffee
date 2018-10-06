@@ -1,10 +1,34 @@
 _ = Cypress._
 $ = Cypress.$
 
+noop = ()=>{}
+top.debugger = noop
+level = 0
+Cypress.Commands.add('debugger', (arg) =>
+  console.log('TOGGLED DEBUGGER', arg)
+  if arg 
+    top.debugger = (curLevel = 0, hit, isEnabled=true) ->
+      if typeof hit is 'boolean' and !hit
+        return
+      else if typeof hit is 'function' and !hit()
+        return
+      else if typeof hit is 'number' and (@__hit__ || 0) < hit
+        return @__hit__ = @__hit__++ || 1
+      if curLevel <= level
+        level = curLevel + 1
+        if isEnabled then debugger
+
+  else
+    level = 0
+    top.debugger = noop
+)
+console.log('loaded command')
+
 describe "src/cy/commands/commands", ->
   before ->
     cy
-      .visit("/fixtures/dom.html")
+      .debugger(true)
+      .visit("http://localhost:3500/fixtures/dom.html")
       .then (win) ->
         @body = win.document.body.outerHTML
 

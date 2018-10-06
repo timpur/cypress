@@ -288,6 +288,7 @@ create = (options = {}) ->
       _.extend(options, obj)
 
     bindTo: (contentWindow) ->
+      debugger
       restore()
 
       XHR    = contentWindow.XMLHttpRequest
@@ -296,10 +297,11 @@ create = (options = {}) ->
       abort  = XHR.prototype.abort
       srh    = XHR.prototype.setRequestHeader
 
-      restoreFn = ->
-        ## restore the property back on the window
-        _.each {send: send, open: open, abort: abort, setRequestHeader: srh}, (value, key) ->
-          XHR.prototype[key] = value
+      # restoreFn = ->
+      #   ## restore the property back on the window
+      #   _.each {send: send, open: open, abort: abort, setRequestHeader: srh}, (value, key) ->
+      #     debugger
+      #     XHR.prototype[key] = value
 
       XHR.prototype.setRequestHeader = ->
         proxy = server.getProxyFor(@)

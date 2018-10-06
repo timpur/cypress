@@ -1,6 +1,6 @@
 {
-  "projectId": "ypt4pf",
   "baseUrl": "http://localhost:3500",
+  "projectId": "ypt4pf",
   "hosts": {
     "*.foobar.com": "127.0.0.1"
   }

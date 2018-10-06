@@ -9,6 +9,7 @@ module.exports = {
   full: (domain) ->
     "
       <script type='text/javascript'>
+        debugger;
         document.domain = '#{domain}';
 
         var Cypress = window.Cypress = parent.Cypress;

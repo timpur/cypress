@@ -44,6 +44,7 @@ getContentWindow = ($autIframe) ->
 
 setWindowDocumentProps = (contentWindow, state) ->
   state("window",   contentWindow)
+  window.debugger(1, true, true)
   state("document", contentWindow.document)
 
 setRemoteIframeProps = ($autIframe, state) ->
@@ -452,6 +453,7 @@ create = (specWindow, Cypress, Cookies, state, config, log) ->
       state("reject", rejectOuterAndCancelInner)
     )
     .catch((err) ->
+      debugger
       ## since this failed this means that a
       ## specific command failed and we should
       ## highlight it in red or insert a new command
@@ -692,6 +694,7 @@ create = (specWindow, Cypress, Cookies, state, config, log) ->
       ## proxy has not injected Cypress.action('window:before:load')
       ## so Cypress.onBeforeAppWindowLoad() was never called
       $autIframe.on "load", ->
+        # window.debugger(0, 1, false)
         ## if setting these props failed
         ## then we know we're in a cross origin failure
         try
@@ -713,6 +716,7 @@ create = (specWindow, Cypress, Cookies, state, config, log) ->
           ## listeners time to be invoked prior to moving on
           stability.isStable(true, "load")
         catch err
+          debugger
           ## we failed setting the remote window props
           ## which means we're in a cross domain failure
           ## check first to see if you have a callback function
