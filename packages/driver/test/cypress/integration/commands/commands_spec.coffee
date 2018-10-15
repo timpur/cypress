@@ -37,6 +37,9 @@ describe "src/cy/commands/commands", ->
 
     $(doc.body).empty().html(@body)
 
+  # it.only "works" ->
+  #   expect(true).to.be(true)
+
   it "can invoke commands by name", ->
     body = cy.$$("body")
 
@@ -60,7 +63,7 @@ describe "src/cy/commands/commands", ->
       names = cy.queue.names()
       expect(names).to.deep.eq(["get", "then"])
 
-  context "custom commands", ->
+  context.only "custom commands", ->
     beforeEach ->
       Cypress.Commands.add "dashboard.selectWindows", =>
         cy

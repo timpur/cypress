@@ -377,7 +377,6 @@ class $Cypress
           @emit("page:loading", args[0])
 
         when "app:window:before:load"
-          debugger
           @cy.onBeforeAppWindowLoad(args[0])
 
           @emit("window:before:load", args[0])

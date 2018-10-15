@@ -91,7 +91,7 @@ const open = (name, url, options = {}, automation) => {
   }
 
 
-  const driver = spawn('C:\\git\\selenium\\build\\cpp\\Win32\\Debug\\IEDriverServer.exe', //exePath,
+  const driver = spawn(path.resolve(__dirname, '../../IEDriverServer.exe'), //exePath,
     [
       // '--log-level=TRACE',
     ],

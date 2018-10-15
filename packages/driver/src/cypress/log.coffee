@@ -462,7 +462,6 @@ create = (Cypress, cy, state, config) ->
 
     log = Log(state, config, obj)
 
-    
     ## add event emitter interface
     $Events.extend(log)
 

@@ -288,7 +288,6 @@ create = (options = {}) ->
       _.extend(options, obj)
 
     bindTo: (contentWindow) ->
-      debugger
       restore()
 
       XHR    = contentWindow.XMLHttpRequest

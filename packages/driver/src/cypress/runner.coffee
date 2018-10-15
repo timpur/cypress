@@ -852,7 +852,6 @@ create = (specWindow, mocha, Cypress, cy) ->
         _next(err)
 
       onNext = (err) ->
-    
         ## when done with the function set that to end
         fnDurationEnd = new Date()
 

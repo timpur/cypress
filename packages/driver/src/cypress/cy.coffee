@@ -44,7 +44,7 @@ getContentWindow = ($autIframe) ->
 
 setWindowDocumentProps = (contentWindow, state) ->
   state("window",   contentWindow)
-  window.debugger(1, true, true)
+  # window.debugger(1, true, true)
   state("document", contentWindow.document)
 
 setRemoteIframeProps = ($autIframe, state) ->
@@ -453,7 +453,6 @@ create = (specWindow, Cypress, Cookies, state, config, log) ->
       state("reject", rejectOuterAndCancelInner)
     )
     .catch((err) ->
-      debugger
       ## since this failed this means that a
       ## specific command failed and we should
       ## highlight it in red or insert a new command

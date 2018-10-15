@@ -92,7 +92,6 @@ module.exports = {
     throw err
 
   throwErrByPath: (errPath, options = {}) ->
-
     err = try
       @errMessageByPath errPath, options.args
     catch e
