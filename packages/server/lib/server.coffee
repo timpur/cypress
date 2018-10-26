@@ -176,7 +176,7 @@ class Server
           onDirectConnection: (req) =>
             urlToCheck = "https://" + req.url
 
-            isMatching = cors.urlMatchesOriginPolicyProps(urlToCheck, @_remoteProps)
+            isMatching = config.ignoreCORS || cors.urlMatchesOriginPolicyProps(urlToCheck, @_remoteProps)
 
             word = if isMatching then "does" else "does not"
 
